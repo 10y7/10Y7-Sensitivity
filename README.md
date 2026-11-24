@@ -24,3 +24,6 @@ Aplicación web estática, local y gratuita; sin cuentas. No requiere npm ni pro
 - Pendiente: captura física real del mouse, precisión comparada con juegos, WebGL en GPU real, imágenes remotas en Cloudflare, service worker e instalación PWA en HTTPS. No considerar versión estable hasta probarlo.
 
 Prueba local normal: servir la carpeta con `python -m http.server 8000` y abrir http://localhost:8000. En Cloudflare Pages: framework None, build vacío, output `.`. La PWA requiere HTTPS o localhost.
+
+## v2.2.0 beta
+Logos PNG locales, flujo guiado de cuatro pasos, navegación en español, herramientas FiveM, bloqueo de desplazamiento y rango fijo durante captura relativa. La captura y escala física deben comprobarse en navegador real. Publicar primero en v2-preview.
