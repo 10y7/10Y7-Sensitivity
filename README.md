@@ -1,30 +1,26 @@
-# 10Y7 Sensitivity — v2.0.0 RC2
+# 10Y7 Sensitivity — v2.1.0 beta (Competitive Aim Update)
 
-Versión de prueba previa a publicación. Aplicación estática compatible con Cloudflare Pages, sin npm ni compilación. Mantiene el asistente inicial, conversor, catálogo, buscador, historial y perfil de la web v1.
+Aplicación web estática, local y gratuita; sin cuentas. No requiere npm ni proceso de compilación. Basada en RC2 local.
+
+## Publicar en la rama de pruebas
+1. Descomprimir el ZIP. En GitHub abrir `10y7/10Y7-Sensitivity` → rama `v2-preview` → Add file → Upload files.
+2. Subir el contenido de la raíz (incluida `assets/`). Confirmar que `index.html`, `competitive.js`, `competitive.css` y `sw.js` están en la raíz. Hacer commit en `v2-preview`, no `main`.
+3. En Cloudflare Pages comprobar Deployments → Preview → v2-preview. Abrir la URL que Cloudflare indique. Si se muestra el código anterior, abrir una ventana privada. El menú indica V2.1.0 · COMPETITIVE BETA.
+4. Para publicar en producción, abrir un pull request de v2-preview a main una vez probados los entrenadores. No se cambia la configuración de Cloudflare.
 
 ## Novedades
-- Dashboard con perfil lateral, juegos ilustrados, estadísticas, niveles y XP calculados a partir de sesiones guardadas.
-- Avatar y banner personalizados, color, brillo, redondez, densidad, bio, región, marcos y logros.
-- Rango angular 3D basado en perspectiva, independiente del buscador: Static click, Dynamic click, Smooth tracking, Reflex shot, Precision dots, Burst switching y 180° turn. Duración, FOV horizontal, dificultad, escenario y color configurables. Editor de mira con previsualización y presets. Rutinas rápidas por juego.
-- Historial filtrable, precisión, puntuación, racha, mapa de errores de disparos, reacción media y combo. Las sesiones 3D interrumpidas no se guardan. Comparar únicamente sesiones equivalentes. El navegador puede aplicar aceleración y no reproduce los motores de juego exactamente.
-- Presets de sensibilidad y respaldo integral local. La importación reemplaza datos después de confirmación. Los datos no se sincronizan entre dominios automáticamente.
-- Sin registro, autenticación ni sincronización online. Los perfiles, preferencias e historial se conservan localmente en el navegador. Algunas imágenes se cargan desde proveedores externos.
+- 12 escenarios Canvas 2D y 11 escenarios 3D, con mallas de esferas y sala de líneas WebGL. Si WebGL no está disponible se ofrece proyección Canvas identificada como compatibilidad. Modos, favoritos, récords por escenario/renderer/duración/FOV/escala vertical, rutinas y ajustes libres.
+- Rango físico: conversión de cuentas a ángulos según DPI y cm/360; se solicita Pointer Lock sin aceleración, con respaldo estándar. El 2D es un plano con mira móvil (no una reproducción de un FPS); el 3D utiliza cámara y detección de intersección geométrica. R reinicia; Esc detiene. WASD en Movement Aim.
+- Buscador guiado: base y candidatos, tareas comparables con semillas compartidas, ponderación por juego y objetivo, 50% rendimiento y 50% comodidad. Refinamiento alrededor del mejor. La recomendación es una prueba inicial y requiere validación en el juego. Los datos de hardware son contexto, no predictores exactos de rendimiento. El antiguo panel manual sigue disponible.
+- FiveM: solo cm/360 medidos. Guarda valores reales del comando `profile_mouseOnFootScale`, DPI y contexto y busca la medición más cercana. El valor inicial 40 cm/360 es un ejemplo editable, no una calibración. No se afirma equivalencia universal del comando.
+- Apariencia independiente: seis temas, controles de acento, redondez, brillo, densidad, fondos, tipografía, animaciones, perfil lateral, mira, sonido, cuadrícula y HUD; importación/exportación de tema. El avatar y banner se editan en Mi perfil.
+- Tarjetas de juego con enlaces de arte promocional comprobados en fuentes de Riot Games, Valve y Epic Games, y gráficos locales de respaldo. No se pudieron descargar originales al entorno de construcción. FiveM conserva tarjeta gráfica local no oficial. No se garantiza disponibilidad de los recursos externos; no se sustituyen por una imagen rota. Proyecto no afiliado a estos editores. Ver ASSETS.md.
+- Conserva las claves de almacenamiento de RC2 y añade las de v2.1. Respaldo en perfil. Los datos de la URL de pruebas y producción son independientes por origen.
 
-## Imágenes y atribuciones
-Los gráficos vectoriales locales son originales de la app. Las tarjetas intentan cargar arte promocional de Valorant (Riot Games), Counter-Strike 2 (Steam/Valve) y Fortnite (Epic Games); si no está disponible, mantienen los gráficos locales. Las imágenes externas necesitan conexión y su disponibilidad no se ha validado desde el entorno de desarrollo. Las marcas pertenecen a sus respectivos propietarios. Proyecto independiente, no afiliado ni respaldado por esos editores. Antes de distribuir, verificar permisos de uso y condiciones de los editores.
-- https://playvalorant.com/en-us/news/game-updates/valorant-asset-kit/
-- https://store.steampowered.com/app/730/CounterStrike_2/
-- https://store.epicgames.com/en-US/p/fortnite--battle-royale
-- https://legal.epicgames.com/epicgames/fan-art-policy
+## Pruebas efectuadas
+- `node --check`: scripts externos e inline.
+- Chromium con HTML/CSS/JS cargados en un documento de prueba (navegación local bloqueada): seis pantallas, 12 y 11 tarjetas de escenarios, creación de plan, guardado de calibración FiveM y navegación.
+- Pruebas de flujo con captura y reloj simulados: finalización y guardado de sesión 2D, 3D en compatibilidad, avance de búsqueda guiada; sin excepciones de página en esas pruebas.
+- Pendiente: captura física real del mouse, precisión comparada con juegos, WebGL en GPU real, imágenes remotas en Cloudflare, service worker e instalación PWA en HTTPS. No considerar versión estable hasta probarlo.
 
-## Probar sin publicar
-Descomprime todo. Puedes abrir index.html para ver la interfaz, aunque la captura del mouse y el modo offline dependen del navegador y del origen. Recomendado: desde esta carpeta ejecutar `python -m http.server 8000` y abrir http://localhost:8000/ en Chrome o Edge. El modo PWA requiere localhost o HTTPS.
-
-## Validación
-Se comprobó sintaxis de JavaScript y se realizaron pruebas de interfaz con Chromium sobre HTML incorporado y almacenamiento simulado: conversión Valorant a CS2, avatar, colores, sesión básica y guardado, selector de nuevos modos, editor de mira, presets, estadísticas, y adquisición de Pointer Lock estándar por el rango angular. No se ha validado la precisión física del mouse, una sesión 3D completa en producción, la captura sin aceleración, el service worker por HTTPS ni las imágenes externas. La navegación por servidor local está bloqueada en el entorno de pruebas.
-
-## Publicar (solo después de aprobar)
-Subir todos los archivos web y `assets/` a la raíz de 10y7/10Y7-Sensitivity. Preferir una rama de prueba y comprobar la URL de preview antes de mezclarla a main. Cloudflare Pages: framework None, build vacío, output `.`. Los archivos de documentación no son requeridos por el navegador. El service worker cambia su nombre de caché en esta versión.
-
-## Cambiar URL
-Exportar todo desde Apariencia > Respaldo completo antes de cambiar el dominio. Crear el nuevo proyecto de Cloudflare Pages conectado al mismo repositorio, probarlo e importar el respaldo. Conservar el sitio anterior hasta verificar que todo funciona.
+Prueba local normal: servir la carpeta con `python -m http.server 8000` y abrir http://localhost:8000. En Cloudflare Pages: framework None, build vacío, output `.`. La PWA requiere HTTPS o localhost.
