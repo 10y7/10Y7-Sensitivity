@@ -27,3 +27,6 @@ Prueba local normal: servir la carpeta con `python -m http.server 8000` y abrir 
 
 ## v2.2.0 beta
 Logos PNG locales, flujo guiado de cuatro pasos, navegación en español, herramientas FiveM, bloqueo de desplazamiento y rango fijo durante captura relativa. La captura y escala física deben comprobarse en navegador real. Publicar primero en v2-preview.
+
+## 2.3.0 beta
+Inicio reconstruido según el concepto aprobado. Logo de dos máscaras que cambia de color con el tema. Portadas locales recortadas del concepto (arte generado, no recursos oficiales). Distancia de giro en lenguaje sencillo. Rango 2D/3D a 1920×1080; malla de esferas más detallada. Prueba en Chromium con scripts insertados: navegación, cuatro tarjetas, cambio de tema, canvas 2D y buscador sin errores JS. Despliegue, WebGL y captura física pendientes de verificar.
