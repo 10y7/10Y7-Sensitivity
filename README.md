@@ -1,1 +1,4 @@
-# 10Y7-Sensitivity
+# 10Y7 Sensitivity Web
+Publicación gratuita: crea un repositorio GitHub, sube el contenido de esta carpeta a la raíz. En Cloudflare Pages conecta el repositorio, selecciona sin framework, deja el comando de compilación vacío y usa `.` como directorio de salida. Cada push a la rama de producción publica una actualización. Alternativamente activa GitHub Pages desde Settings > Pages > Deploy from a branch > main / root.
+
+Prueba local: abre index.html o ejecuta `python -m http.server 8000` en esta carpeta y visita localhost:8000. La instalación PWA y el modo offline requieren HTTPS o localhost. Los perfiles se guardan en el navegador, no se sincronizan entre equipos. Las imágenes externas pueden requerir conexión. Para cada actualización cambia CACHE en sw.js. El entrenador es una aproximación y depende del soporte Pointer Lock del navegador.
